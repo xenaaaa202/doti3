@@ -1,0 +1,136 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+# Set $mod to Alt key (main mod)
+set $mod Mod1
+
+# Disable animations (valid i3 settings)
+force_focus_wrapping yes
+workspace_auto_back_and_forth yes
+popup_during_fullscreen leave_fullscreen
+focus_on_window_activation urgent
+
+# Font for window titles. i3 uses pango font description.
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# border
+default_border normal 2
+default_floating_border normal 2
+
+# gaps
+gaps inner 5
+gaps outer 10
+
+# colors (matching Hyprland style)
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffffff #ffffff #000000 #ffffff  #ffffff
+client.focused_inactive #cccccc #cccccc #000000 #cccccc  #cccccc
+client.unfocused        #333333 #333333 #888888 #333333  #333333
+client.urgent           #2f343a #900000 #ffffff #900000  #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000  #000000
+
+# Start essential programs (matching Hyprland binds)
+bindsym Control+space exec kitty
+bindsym $mod+space exec rofi -show drun
+bindsym $mod+b exec firefox
+bindsym $mod+c exec zen-browser
+bindsym $mod+f exec dolphin
+bindsym $mod+o exec obsidian
+bindsym $mod+e exec emacs
+
+# Volume control
+bindsym $mod+Up exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+Down exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# kill focused window
+bindsym $mod+q kill
+
+# exit i3 (Alt+M)
+bindsym $mod+Shift+m exec i3-msg exit
+
+# Window navigation (hjkl style)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Window movement (Shift+hjkl)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Workspace switching (Alt+1-6)
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+
+# Move focused container to workspace (Alt+Shift+1-6)
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+
+# Move focused window to workspace with Ctrl+1-6
+bindsym Control+1 move container to workspace number 1
+bindsym Control+2 move container to workspace number 2
+bindsym Control+3 move container to workspace number 3
+bindsym Control+4 move container to workspace number 4
+bindsym Control+5 move container to workspace number 5
+bindsym Control+6 move container to workspace number 6
+
+# Move focused window with Ctrl+Alt+Arrow keys
+bindsym Control+$mod+Left move left
+bindsym Control+$mod+Right move right
+bindsym Control+$mod+Up move up
+bindsym Control+$mod+Down move down
+
+# Resize focused window with Ctrl + Arrow keys
+bindsym Control+Left resize shrink width 50 px or 50 ppt
+bindsym Control+Right resize grow width 50 px or 50 ppt
+bindsym Control+Up resize shrink height 50 px or 50 ppt
+bindsym Control+Down resize grow height 50 px or 50 ppt
+
+# Shift+W to cycle between windows in current workspace
+bindsym Shift+w focus right
+bindsym Shift+e focus left
+
+# Fast workspace switching (Alt+F1-F6)
+bindsym $mod+F1 workspace number 1
+bindsym $mod+F2 workspace number 2
+bindsym $mod+F3 workspace number 3
+bindsym $mod+F4 workspace number 4
+bindsym $mod+F5 workspace number 5
+bindsym $mod+F6 workspace number 6
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/workbench/open applications)
+bindsym $mod+Shift+r restart
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+Shift+w layout tabbed
+bindsym $mod+Shift+e layout toggle split
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# focus the parent container
+bindsym $mod+a focus parent
+
+# Autostart applications (matching Hyprland)
+exec_always --no-startup-id feh --bg-fill /home/xena/Downloads/dotfiles-main/dotfiles/wallpaper/nature.jpg
+exec --no-startup-id sleep 2 && gammastep -O 3800
+exec --no-startup-id picom --config ~/.config/picom.conf --daemon
+
+# i3bar disabled - no taskbar
