@@ -1,0 +1,7 @@
+[ ] reciever: sudo ncat -lvnp 9999 > thing-to-recieve
+[ ] sender : sudo ncat --send-only <ip-reciever> 9999 < thing-to-send
+
+
+{ } things to note
+- transfers .txt/small files fast 
+- for bigger files -> zip it

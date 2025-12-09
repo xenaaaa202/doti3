@@ -1,0 +1,18 @@
+# i3status config - minimal display
+general {
+    colors = true
+    interval = 1
+}
+
+order += "memory"
+order += "tztime local"
+
+memory {
+    format = "RAM %used"
+    format_degraded = "RAM %used"
+    threshold_degraded = "1%"
+}
+
+tztime local {
+    format = "%Y-%m-%d %H:%M:%S"
+}
